@@ -1,0 +1,178 @@
+import type { Ticket, User } from "./types"
+
+export const CURRENT_USER: User = {
+  id: "u-1",
+  name: "Jordan Reyes",
+  email: "jordan@northwind.io",
+  role: "admin",
+  avatarColor: "oklch(0.54 0.21 264)",
+}
+
+export const AGENTS: User[] = [
+  { id: "a-1", name: "Priya Sharma", email: "priya@helpdesk.io", role: "admin", avatarColor: "oklch(0.65 0.17 162)" },
+  { id: "a-2", name: "Marcus Chen", email: "marcus@helpdesk.io", role: "admin", avatarColor: "oklch(0.62 0.22 29)" },
+  { id: "a-3", name: "Sofia Rossi", email: "sofia@helpdesk.io", role: "admin", avatarColor: "oklch(0.72 0.16 70)" },
+]
+
+const now = Date.now()
+const hours = (h: number) => new Date(now - h * 3600_000).toISOString()
+const days = (d: number) => new Date(now - d * 86_400_000).toISOString()
+
+export const MOCK_TICKETS: Ticket[] = [
+  {
+    id: "TICK-1042",
+    subject: "Unable to reset my account password",
+    description:
+      "I've tried the 'forgot password' flow three times but never receive the reset email. I've checked spam too. Can someone help me regain access?",
+    status: "open",
+    priority: "high",
+    category: "Account",
+    requesterId: "u-1",
+    requesterName: "Jordan Reyes",
+    assigneeId: null,
+    assigneeName: null,
+    createdAt: hours(2),
+    updatedAt: hours(1),
+    comments: [
+      {
+        id: "c-1",
+        authorId: "u-1",
+        authorName: "Jordan Reyes",
+        body: "Adding that I'm using the latest Chrome on macOS if that helps.",
+        createdAt: hours(1),
+      },
+    ],
+  },
+  {
+    id: "TICK-1041",
+    subject: "Invoice shows incorrect tax amount",
+    description:
+      "Our March invoice lists 12% VAT but our region should be charged 8%. Please review and issue a corrected invoice.",
+    status: "in_progress",
+    priority: "medium",
+    category: "Billing",
+    requesterId: "u-1",
+    requesterName: "Jordan Reyes",
+    assigneeId: "a-1",
+    assigneeName: "Priya Sharma",
+    createdAt: days(1),
+    updatedAt: hours(5),
+    comments: [
+      {
+        id: "c-2",
+        authorId: "a-1",
+        authorName: "Priya Sharma",
+        body: "Thanks for flagging — I've escalated this to our billing team and will update you shortly.",
+        createdAt: hours(5),
+      },
+    ],
+  },
+  {
+    id: "TICK-1040",
+    subject: "Dashboard charts not loading on Safari",
+    description:
+      "The analytics charts render fine on Chrome but stay blank on Safari 17. Console shows a WebGL context error.",
+    status: "in_progress",
+    priority: "critical",
+    category: "Bug Report",
+    requesterId: "u-2",
+    requesterName: "Alex Morgan",
+    assigneeId: "a-2",
+    assigneeName: "Marcus Chen",
+    createdAt: days(2),
+    updatedAt: hours(8),
+    comments: [],
+  },
+  {
+    id: "TICK-1039",
+    subject: "Request: dark mode for the mobile app",
+    description: "Would love a dark theme option in the iOS app to match the web experience.",
+    status: "open",
+    priority: "low",
+    category: "Feature Request",
+    requesterId: "u-3",
+    requesterName: "Dana Whitfield",
+    assigneeId: null,
+    assigneeName: null,
+    createdAt: days(3),
+    updatedAt: days(3),
+    comments: [],
+  },
+  {
+    id: "TICK-1038",
+    subject: "API rate limit hit unexpectedly",
+    description:
+      "We started receiving 429 responses well below our documented limit of 1000 req/min. Need clarification on the actual limits.",
+    status: "resolved",
+    priority: "high",
+    category: "Technical",
+    requesterId: "u-4",
+    requesterName: "Liam Walsh",
+    assigneeId: "a-3",
+    assigneeName: "Sofia Rossi",
+    createdAt: days(4),
+    updatedAt: days(1),
+    comments: [
+      {
+        id: "c-3",
+        authorId: "a-3",
+        authorName: "Sofia Rossi",
+        body: "Confirmed a misconfigured plan tier. I've upgraded your limit to 5000 req/min. Closing as resolved.",
+        createdAt: days(1),
+      },
+    ],
+  },
+  {
+    id: "TICK-1037",
+    subject: "Cannot upload files larger than 5MB",
+    description: "Uploads above 5MB fail silently with no error message in the attachments panel.",
+    status: "resolved",
+    priority: "medium",
+    category: "Technical",
+    requesterId: "u-1",
+    requesterName: "Jordan Reyes",
+    assigneeId: "a-2",
+    assigneeName: "Marcus Chen",
+    createdAt: days(6),
+    updatedAt: days(4),
+    comments: [],
+  },
+  {
+    id: "TICK-1036",
+    subject: "Double charged for annual subscription",
+    description: "I was billed twice for my annual plan on the same day. Please refund the duplicate charge.",
+    status: "closed",
+    priority: "critical",
+    category: "Billing",
+    requesterId: "u-5",
+    requesterName: "Noah Patel",
+    assigneeId: "a-1",
+    assigneeName: "Priya Sharma",
+    createdAt: days(9),
+    updatedAt: days(7),
+    comments: [
+      {
+        id: "c-4",
+        authorId: "a-1",
+        authorName: "Priya Sharma",
+        body: "Refund of $480 processed. It should appear within 5-7 business days. Closing the ticket.",
+        createdAt: days(7),
+      },
+    ],
+  },
+  {
+    id: "TICK-1035",
+    subject: "How do I invite team members?",
+    description: "I can't find where to add colleagues to my workspace. Is this on a specific plan only?",
+    status: "closed",
+    priority: "low",
+    category: "General",
+    requesterId: "u-6",
+    requesterName: "Emma Larsson",
+    assigneeId: "a-3",
+    assigneeName: "Sofia Rossi",
+    createdAt: days(12),
+    updatedAt: days(10),
+    comments: [],
+  },
+]
